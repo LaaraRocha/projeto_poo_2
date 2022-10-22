@@ -10,8 +10,8 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
-app.get('/obter-lista', async (req, res) => {
-console.log(req,res);
+app.get('/obter-lista-motorista', async (req, res) => {
+
 });
 
 

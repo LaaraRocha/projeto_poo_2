@@ -45,7 +45,7 @@ module.exports = {
         return true;
     },
 
-    async obterRotaPorId(idRota) {
+/*    async obterRotaPorId(idRota) {
         let result = await con.query('SELECT * FROM rota WHERE id = ?;', [idRota])
             .catch(err => {
                 console.log(err);
@@ -56,6 +56,6 @@ module.exports = {
         } else {
             return 0;
         }
-    }
+    }*/
 
 }

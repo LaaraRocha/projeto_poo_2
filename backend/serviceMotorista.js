@@ -45,7 +45,7 @@ module.exports = {
         return true;
     },
 
-    async obterMotoristaPorId(idMotorista) {
+/*    async obterMotoristaPorId(idMotorista) {
         let result = await con.query('SELECT * FROM motorista WHERE id = ?;', [idMotorista])
             .catch(err => {
                 console.log(err);
@@ -56,6 +56,6 @@ module.exports = {
         } else {
             return 0;
         }
-    }
+    }*/
 
 }

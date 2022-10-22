@@ -45,7 +45,7 @@ module.exports = {
         return true;
     },
 
-    async obterVeiculoPorId(idVeiculo) {
+/*    async obterVeiculoPorId(idVeiculo) {
         let result = await con.query('SELECT * FROM veiculo WHERE id = ?;', [idVeiculo])
             .catch(err => {
                 console.log(err);
@@ -56,6 +56,6 @@ module.exports = {
         } else {
             return 0;
         }
-    }
+    }*/
 
 }
