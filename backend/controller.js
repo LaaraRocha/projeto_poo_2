@@ -10,8 +10,22 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
-app.get('/obter-lista-motorista', async (req, res) => {
+app.get('obterListaMotorista', async (req, res) => {
+    if (!(Object.is(req.query.rota, null)) && !(Object.is(req.query.motorista, ''))) {
+        let result;
+        switch (req.query.motorista) {
+            case 'motorista' :
+                result = await serviceMotorista.obterListaMotorista();
+                break;
+            case 'veiculo' :
+                result = await veiculoService.obterListaVeiculos();
+                break;
+            case 'pedido' :
+                result = await pedidoService.obterListaPedidos();
+        }
 
+        res.json(result);
+    }
 });
 
 
