@@ -10,21 +10,25 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
-app.get('obterListaMotorista', async (req, res) => {
-    if (!(Object.is(req.query.rota, null)) && !(Object.is(req.query.motorista, ''))) {
+app.get('/obter-lista', async (req, res) => {
+    console.log('testeeeeeeeeeeeeeee');
+    if (!(Object.is(req.query.tipo, null))) {
         let result;
-        switch (req.query.motorista) {
+        switch (req.query.tipo) {
             case 'motorista' :
                 result = await serviceMotorista.obterListaMotorista();
                 break;
             case 'veiculo' :
-                result = await veiculoService.obterListaVeiculos();
+                result = await serviceVeiculo.obterListaVeiculo();
                 break;
-            case 'pedido' :
-                result = await pedidoService.obterListaPedidos();
+            case 'rota' :
+                result = await serviceRota.obterListaRota();
+                break;
+            case 'despesa' :
+                result = await serviceDespesa.obterListaDespesa();
         }
 
-        res.json(result);
+        return res.json(result);
     }
 });
 
