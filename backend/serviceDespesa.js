@@ -13,7 +13,7 @@ con.query = util.promisify(con.query).bind(con);
 module.exports = {
     async incluirDespesa(despesa) {
         const params = [despesa.descricao]
-        await con.query('INSERT INTO despesa(ID_veiculo, ID_motorista, descricao, valor) VALUES (?, ?, ?, ?);', params)
+        await con.query('INSERT INTO despesa(ID_veiculo, ID_motorista, ID_rota, descricao, valor) VALUES (?, ?, ?, ?, ?);', params)
             .catch(err => {
                 console.log(err);
                 return false;
