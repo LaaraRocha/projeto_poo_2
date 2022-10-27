@@ -13,7 +13,7 @@
       </tr>
       <tr>
         <td>
-          <router-link to="/servicos">Serviços</router-link>
+          <router-link to="/servicos">Veiculos</router-link>
         </td>
       </tr>
       <tr>

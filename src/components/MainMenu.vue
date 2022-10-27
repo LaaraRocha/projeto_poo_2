@@ -1,6 +1,7 @@
 <template>
   <div>
-    teste main menu
+    MENU INICIAL
+    <form action="http://localhost:8081/backend/controller.js"></form>
   </div>
 </template>
 
