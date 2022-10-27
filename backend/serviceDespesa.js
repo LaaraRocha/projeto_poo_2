@@ -4,14 +4,14 @@ const util = require('util');
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'root',
-    database : 'projeto-oop'
+    password : '',
+    database : 'projeto_poo_2'
 });
 
 con.query = util.promisify(con.query).bind(con);
 
 module.exports = {
-    async salvarNovoDespesa(despesa) {
+    async incluirDespesa(despesa) {
         const params = [despesa.descricao]
         await con.query('INSERT INTO despesa(ID_veiculo, ID_motorista, descricao, valor) VALUES (?, ?, ?, ?);', params)
             .catch(err => {
@@ -23,7 +23,7 @@ module.exports = {
 
     async editarDespesa(despesa) {
         const params = [despesa.descricao, despesa.id];
-        await con.query('UPDATE despesa SET descricao, valor = ?, ? WHERE id = ?;', params)
+        await con.query('UPDATE despesa SET descricao, valor = ?, ? WHERE ID_despesa = ?;', params)
             .catch(err => {
                 console.log(err);
                 return false;
@@ -32,12 +32,12 @@ module.exports = {
     },
 
     async obterListaDespesa() {
-        return await con.query('SELECT * FROM despesa ORDER BY id ASC')
+        return await con.query('SELECT * FROM despesa ORDER BY ID_despesa ASC')
             .catch(err => console.log(err));
     },
 
     async excluirDespesa(despesa) {
-        await con.query('DELETE FROM despesa WHERE despesa.id = ? ;', [despesa.id])
+        await con.query('DELETE FROM despesa WHERE ID_despesa = ? ;', [despesa.id])
             .catch(err => {
                 console.log(err);
                 return false;

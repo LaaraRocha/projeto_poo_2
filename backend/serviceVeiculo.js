@@ -4,14 +4,14 @@ const util = require('util');
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'root',
-    database : 'projeto-oop'
+    password : '',
+    database : 'projeto_poo_2'
 });
 
 con.query = util.promisify(con.query).bind(con);
 
 module.exports = {
-    async salvarNovoVeiculo(veiculo) {
+    async incluirVeiculo(veiculo) {
         const params = [veiculo.descricao]
         await con.query('INSERT INTO veiculo(descricao) VALUES (?);', params)
             .catch(err => {
@@ -23,7 +23,7 @@ module.exports = {
 
     async editarVeiculo(veiculo) {
         const params = [veiculo.descricao, veiculo.id];
-        await con.query('UPDATE veiculo SET descricao = ? WHERE id = ?;', params)
+        await con.query('UPDATE veiculo SET descricao = ? WHERE ID_veiculo = ?;', params)
             .catch(err => {
                 console.log(err);
                 return false;
@@ -32,12 +32,12 @@ module.exports = {
     },
 
     async obterListaVeiculo() {
-        return await con.query('SELECT * FROM veiculo ORDER BY id ASC')
+        return await con.query('SELECT * FROM veiculo ORDER BY ID_veiculo ASC')
             .catch(err => console.log(err));
     },
 
     async excluirVeiculo(veiculo) {
-        await con.query('DELETE FROM veiculo WHERE veiculo.id = ? ;', [veiculo.id])
+        await con.query('DELETE FROM veiculo WHERE ID_veiculo = ? ;', [veiculo.id])
             .catch(err => {
                 console.log(err);
                 return false;

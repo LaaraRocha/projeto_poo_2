@@ -4,14 +4,14 @@ const util = require('util');
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'root',
-    database : 'projeto-oop'
+    password : '',
+    database : 'projeto_poo_2'
 });
 
 con.query = util.promisify(con.query).bind(con);
 
 module.exports = {
-    async salvarNovoMotorista(motorista) {
+    async incluirMotorista(motorista) {
         const params = [motorista.nome]
         await con.query('INSERT INTO motorista(nome) VALUES (?);', params)
             .catch(err => {
@@ -23,7 +23,7 @@ module.exports = {
 
     async editarMotorista(motorista) {
         const params = [motorista.nome, motorista.id];
-        await con.query('UPDATE motorista SET nome = ? WHERE id = ?;', params)
+        await con.query('UPDATE motorista SET nome = ? WHERE ID_motorista = ?;', params)
             .catch(err => {
                 console.log(err);
                 return false;
@@ -32,12 +32,12 @@ module.exports = {
     },
 
     async obterListaMotorista() {
-        return await con.query('SELECT * FROM motorista ORDER BY id ASC')
+        return await con.query('SELECT * FROM motorista ORDER BY ID_motorista ASC')
             .catch(err => console.log(err));
     },
 
     async excluirMotorista(motorista) {
-        await con.query('DELETE FROM motorista WHERE motorista.id = ? ;', [motorista.id])
+        await con.query('DELETE FROM motorista WHERE ID_motorista = ? ;', [motorista.id])
             .catch(err => {
                 console.log(err);
                 return false;
