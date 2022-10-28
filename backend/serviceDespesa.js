@@ -12,7 +12,8 @@ con.query = util.promisify(con.query).bind(con);
 
 module.exports = {
     async incluirDespesa(despesa) {
-        const params = [despesa.descricao]
+        const params = [despesa.ID_veiculo, despesa.ID_motorista, despesa.ID_rota, despesa.descricao, despesa.valor]
+        console.log( params)
         await con.query('INSERT INTO despesa(ID_veiculo, ID_motorista, ID_rota, descricao, valor) VALUES (?, ?, ?, ?, ?);', params)
             .catch(err => {
                 console.log(err);
@@ -22,8 +23,8 @@ module.exports = {
     },
 
     async editarDespesa(despesa) {
-        const params = [despesa.descricao, despesa.id];
-        await con.query('UPDATE despesa SET descricao, valor = ?, ? WHERE ID_despesa = ?;', params)
+        const params = [despesa.descricao,despesa.valor, despesa.id];
+        await con.query('UPDATE despesa SET descricao = ? AND valor = ? WHERE ID_despesa = ?;', params)
             .catch(err => {
                 console.log(err);
                 return false;

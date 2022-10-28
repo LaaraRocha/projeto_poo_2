@@ -23,6 +23,7 @@ module.exports = {
 
     async editarMotorista(motorista) {
         const params = [motorista.nome, motorista.id];
+        console.log(params)
         await con.query('UPDATE motorista SET nome = ? WHERE ID_motorista = ?;', params)
             .catch(err => {
                 console.log(err);

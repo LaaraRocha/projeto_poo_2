@@ -15,7 +15,6 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 app.get('/obter-lista', async (req, res) => {
-    console.log('teste lista motorista');
     if (!(Object.is(req.query.tipo, null))) {
         let result;
         switch (req.query.tipo) {
@@ -31,8 +30,7 @@ app.get('/obter-lista', async (req, res) => {
             case 'despesa' :
                 result = await serviceDespesa.obterListaDespesa();
         }
-
-        return res.json(result);
+        return res.json(result)
     }
 });
 
@@ -63,7 +61,7 @@ app.post('/incluir', async (req, res) => {
 });
 
 app.post('/editar', async (req, res) => {
-    console.log('teste inclusão');
+    console.log('teste Editar');
     if (!(Object.is(req.query.tipo, null)) && !(Object.is(req.query.tipo, ''))) {
         if (!(Object.is(req.body, null)) && !(Object.is(req.body, ''))) {
             let result;
@@ -88,7 +86,7 @@ app.post('/editar', async (req, res) => {
 });
 
 app.post('/excluir', async (req, res) => {
-    console.log('teste inclusão');
+    console.log('teste Excluir');
     if (!(Object.is(req.query.tipo, null)) && !(Object.is(req.query.tipo, ''))) {
         if (!(Object.is(req.body, null)) && !(Object.is(req.body, ''))) {
             let result;
