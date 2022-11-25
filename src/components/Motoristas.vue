@@ -1,41 +1,89 @@
 <template>
   <div>
 
-    <form action = "http://localhost:8081/backend/controller.js" method="get">
-      <p>Listar Motorista</p>
-      <br>
-      <input type="submit" name="Listar" value="Listar">
-      <br><br>
-    </form>
+    <p>Listar Motorista</p>
+    <table>
+      <tr v-for="motorista in listaMotoristas" :key="motorista.ID_motorista">
+        <td headers="id">{{motorista.ID_motorista}}</td>
+        <td headers="nome">{{motorista.nome}}</td>
+        <td headers="editar">
+          <button @click="carregarEdicao(motorista)">Editar</button>
+        </td>
+        <td headers="excluir">
+          <button @click="excluir(motorista)">Excluir</button>
+        </td>
+      </tr>
+    </table>
 
-    <form action = "http://localhost:8081/backend/controller.js" method="post">
+    <div>
       <p>Cadastrar Motorista</p>
-      <input type="text" name="Nome do Motorista" placeholder="Digite o nome do Motorista">
+      <input type="text" name="Nome do Motorista" placeholder="Digite o nome do Motorista" v-model="motorista.nome">
       <br><br>
-      <input type="submit" name="Incluir" value="Incluir">
-    </form>
+      <input type="submit" name="Incluir" value="Incluir" @click="cadastrar()">
+    </div>
 
-    <form action = "http://localhost:8081/backend/controller.js" method="post">
+    <div>
       <p>Alterar Motorista</p>
-      <input type="text" name="Nome do Motorista" placeholder="Digite o nome do Motorista">
+      <input v-if="edicaoMotorista.ID_motorista" type="text" :value="`motorista a ser atualizado: ${edicaoMotorista.ID_motorista}`" readonly> <br> <br>
+      <input type="text" name="Nome do Motorista" placeholder="Digite o nome do Motorista" v-model="edicaoMotorista.nome">
       <br><br>
-      <input type="submit" name="Alterar" value="Alterar">
-    </form>
-
-    <form action = "http://localhost:8081/backend/controller.js" method="post">
-      <p>Excluir Motorista</p>
-      <input type="text" name="ID" placeholder="Digite o ID Motorista">
-      <br><br>
-      <input type="submit" name="Excluir" value="Excluir">
-    </form>
+      <input type="submit" name="Alterar" value="Alterar" @click="editar()">
+    </div>
 
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
+const urlBackend = 'http://localhost:8081';
 export default {
-  name: "tela-motoristas"
+  name: "tela-motoristas",
+  data() {
+    return {
+      listaMotoristas: '',
+      motorista: {ID_MOTORISTA: 0, nome: ''},
+      edicaoMotorista: {ID_motorista: 0, nome: ''}
+    }
+  },
+  mounted() {
+    this.atualizarListas();
+
+  },
+  methods: {
+    cadastrar() {
+      console.log(this.motorista);
+      axios.post(urlBackend + '/incluir?tipo=motorista', this.motorista).then((response) => {
+        console.log(response.status)
+      })
+    },
+    carregarEdicao(motorista) {
+      this.edicaoMotorista = motorista;
+    },
+    editar() {
+      axios.post(urlBackend + '/editar?tipo=motorista', this.edicaoMotorista).then((response) => {
+        console.log(response.status)
+        this.atualizarListas();
+      })
+    },
+    excluir(motorista) {
+      axios.post(urlBackend + '/excluir?tipo=motorista', motorista).then((response) => {
+        console.log(response.status);
+        this.atualizarListas();
+      })
+    },
+    atualizarListas() {
+      axios.get(urlBackend + '/obter-lista?tipo=motorista').then((response) => {
+        this.listaMotoristas = response.data;
+        console.log(this.listaMotoristas)
+      });
+    }
+  }
+
 }
+
+
+
 </script>
 
 <style scoped>

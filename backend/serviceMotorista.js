@@ -12,6 +12,7 @@ con.query = util.promisify(con.query).bind(con);
 
 module.exports = {
     async incluirMotorista(motorista) {
+        console.log(motorista)
         const params = [motorista.nome]
         await con.query('INSERT INTO motorista(nome) VALUES (?);', params)
             .catch(err => {
@@ -38,7 +39,8 @@ module.exports = {
     },
 
     async excluirMotorista(motorista) {
-        await con.query('DELETE FROM motorista WHERE ID_motorista = ? ;', [motorista.id])
+        console.log(motorista)
+        await con.query('DELETE FROM motorista WHERE ID_motorista = ? ;', [motorista.ID_motorista])
             .catch(err => {
                 console.log(err);
                 return false;

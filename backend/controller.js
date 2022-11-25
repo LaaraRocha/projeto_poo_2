@@ -42,6 +42,7 @@ app.post('/incluir', async (req, res) => {
             let result;
             switch (req.query.tipo) {
                 case 'motorista' :
+                    console.log(req.body)
                     result = await serviceMotorista.incluirMotorista(req.body);
                     break;
                 case 'veiculo' :
