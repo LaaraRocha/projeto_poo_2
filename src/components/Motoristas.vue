@@ -35,8 +35,9 @@
 
 <script>
 import axios from "axios";
-
 const urlBackend = 'http://localhost:8081';
+const tipo = '?tipo=motorista';
+
 export default {
   name: "tela-motoristas",
   data() {
@@ -53,7 +54,7 @@ export default {
   methods: {
     cadastrar() {
       console.log(this.motorista);
-      axios.post(urlBackend + '/incluir?tipo=motorista', this.motorista).then((response) => {
+      axios.post(urlBackend + '/incluir' + tipo, this.motorista).then((response) => {
         console.log(response.status)
       })
     },
@@ -61,19 +62,19 @@ export default {
       this.edicaoMotorista = motorista;
     },
     editar() {
-      axios.post(urlBackend + '/editar?tipo=motorista', this.edicaoMotorista).then((response) => {
+      axios.post(urlBackend + '/editar' + tipo, this.edicaoMotorista).then((response) => {
         console.log(response.status)
         this.atualizarListas();
       })
     },
     excluir(motorista) {
-      axios.post(urlBackend + '/excluir?tipo=motorista', motorista).then((response) => {
+      axios.post(urlBackend + '/excluir' + tipo, motorista).then((response) => {
         console.log(response.status);
         this.atualizarListas();
       })
     },
     atualizarListas() {
-      axios.get(urlBackend + '/obter-lista?tipo=motorista').then((response) => {
+      axios.get(urlBackend + '/obter-lista' + tipo).then((response) => {
         this.listaMotoristas = response.data;
         console.log(this.listaMotoristas)
       });
