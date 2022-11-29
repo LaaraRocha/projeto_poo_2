@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <p>Listar Motorista</p>
     <table>
       <tr v-for="motorista in listaMotoristas" :key="motorista.ID_motorista">
@@ -29,7 +28,6 @@
       <br><br>
       <input type="submit" name="Alterar" value="Alterar" @click="editar()">
     </div>
-
   </div>
 </template>
 
@@ -82,8 +80,6 @@ export default {
   }
 
 }
-
-
 
 </script>
 
