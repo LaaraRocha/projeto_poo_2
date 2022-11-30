@@ -5,6 +5,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import PrimeVue from 'primevue/config'
 import Dropdown from 'primevue/dropdown'
+import InputText from 'primevue/inputtext';
 
 import 'primevue/resources/themes/lara-light-blue/theme.css'       //theme
 import 'primevue/resources/primevue.min.css'                 //core css
@@ -37,5 +38,6 @@ app.use(router);
 app.use(VueAxios, axios);
 app.use(PrimeVue);
 app.component('Drop-down', Dropdown);
+app.component('p-input', InputText);
 
 app.mount('#app')
