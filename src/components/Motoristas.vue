@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>Listar Motorista</p>
-    <table>
+    <p >Listar Motorista</p>
+    <table class="table">
       <tr v-for="motorista in listaMotoristas" :key="motorista.ID_motorista">
         <td headers="id">{{motorista.ID_motorista}}</td>
         <td headers="nome">{{motorista.nome}}</td>
@@ -84,5 +84,20 @@ export default {
 </script>
 
 <style scoped>
+ .table{
+  margin-left: auto;
+  margin-right: auto;
+   border: solid;
+   background: white;
+}
+ tr:hover {background-color: #f5f5f5}
+  div {
+  background-color: lightblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+  button {
+    background-color: lightskyblue;
+  }
 
 </style>

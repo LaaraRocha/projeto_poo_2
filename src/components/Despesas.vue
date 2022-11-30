@@ -27,4 +27,20 @@ export default {
 
 <style scoped>
 
+.table{
+  margin-left: auto;
+  margin-right: auto;
+  border: solid;
+  background: white;
+}
+tr:hover {background-color: #f5f5f5}
+div {
+  background-color: lightblue;
+  margin-left: auto;
+  margin-right: auto;
+}
+button {
+  background-color: lightskyblue;
+}
+
 </style>

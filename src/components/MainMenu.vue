@@ -13,4 +13,8 @@ export default {
 
 <style scoped>
 
+*{
+  background-color: lightblue;
+}
+
 </style>
