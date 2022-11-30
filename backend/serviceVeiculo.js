@@ -37,7 +37,7 @@ module.exports = {
     },
 
     async excluirVeiculo(veiculo) {
-        await con.query('DELETE FROM veiculo WHERE ID_veiculo = ? ;', [veiculo.id])
+        await con.query('DELETE FROM veiculo WHERE ID_veiculo = ? ;', [veiculo.ID_veiculo])
             .catch(err => {
                 console.log(err);
                 return false;

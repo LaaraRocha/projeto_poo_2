@@ -55,7 +55,8 @@ export default {
     cadastrar() {
       console.log(this.rota);
       axios.post(urlBackend + '/incluir' + tipo, this.rota).then((response) => {
-        console.log(response.status)
+        console.log(response.status);
+        this.atualizarListas();
       })
     },
     carregarEdicao(rota) {

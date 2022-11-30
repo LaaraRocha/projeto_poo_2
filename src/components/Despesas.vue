@@ -4,6 +4,7 @@ Despesa:
   <div>
     <form action="backend/controller.js">
       <p>Cadastro de Despesa</p>
+      <Drop-down v-model="motoristaSelecionado" :options="listaMotorista" optionLabel="name" placeholder="Select a City" />
       <input type="integer" name="Código do Motorista" placeholder="Id do motorista">
       <br>
       <input type="integer" name="Código do Veículo" placeholder="Id do veículo">
@@ -20,8 +21,51 @@ Despesa:
 </template>
 
 <script>
+import axios from "axios";
+
+const urlBackend = 'http://localhost:8081';
+const tipoMotorista = '?tipo=motorista';
+const tipoVeiculo = '?tipo=veiculo';
+const tipoRota = '?tipo=rota';
+
 export default {
-  name: "tela-despesas"
+  name: "tela-despesas",
+  data() {
+    return {
+      listaMotorista: [],
+      motoristaSelecionado: '',
+      listaVeiculos: [],
+      veiculoSelecionado: '',
+      listaRota: [],
+      rotaSelecionada: ''
+    }
+  },
+  mounted() {
+    this.atualizarListaMotorista();
+    this.atualizarListaVeiculo();
+    this.atualizarListaRota();
+
+  },
+  methods: {
+    atualizarListaMotorista() {
+      axios.get(urlBackend + '/obter-lista' + tipoMotorista).then((response) => {
+        this.listaMotoristas = response.data;
+        console.log(this.listaMotoristas)
+      });
+    },
+    atualizarListaVeiculo() {
+      axios.get(urlBackend + '/obter-lista' + tipoVeiculo).then((response) => {
+        this.listaVeiculos = response.data;
+        console.log(this.listaMotoristas)
+      });
+    },
+    atualizarListaRota() {
+      axios.get(urlBackend + '/obter-lista' + tipoRota).then((response) => {
+        this.listaRota = response.data;
+        console.log(this.listaMotoristas)
+      });
+    }
+  }
 }
 </script>
 

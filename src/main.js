@@ -1,8 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHistory} from "vue-router"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import PrimeVue from 'primevue/config'
+import Dropdown from 'primevue/dropdown'
+
+import 'primevue/resources/themes/lara-light-blue/theme.css'       //theme
+import 'primevue/resources/primevue.min.css'                 //core css
+import 'primeicons/primeicons.css'                           //icons
 
 import MainMenu from "@/components/MainMenu";
 import Motoristas from "@/components/Motoristas";
@@ -25,4 +31,11 @@ const router = createRouter({
     routes: routes
 })
 
-createApp(App).use(router).use(VueAxios, axios).mount('#app')
+let app = createApp(App);
+
+app.use(router);
+app.use(VueAxios, axios);
+app.use(PrimeVue);
+app.component('Drop-down', Dropdown);
+
+app.mount('#app')

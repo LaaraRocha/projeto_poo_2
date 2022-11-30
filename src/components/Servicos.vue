@@ -54,6 +54,7 @@ export default {
       console.log(this.veiculo);
       axios.post(urlBackend + '/incluir' + tipo, this.veiculo).then((response) => {
         console.log(response.status)
+        this.atualizarListas();
       })
     },
     carregarEdicao(veiculo) {

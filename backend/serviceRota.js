@@ -22,7 +22,7 @@ module.exports = {
     },
 
     async editarRota(rota) {
-        const params = [rota.descricao, rota.id];
+        const params = [rota.descricao, rota.ID_rota];
         await con.query('UPDATE rota SET descricao = ? WHERE ID_rota = ?;', params)
             .catch(err => {
                 console.log(err);
@@ -37,7 +37,8 @@ module.exports = {
     },
 
     async excluirRota(rota) {
-        await con.query('DELETE FROM rota WHERE ID_rota = ? ;', [rota.id])
+        console.log(rota)
+        await con.query('DELETE FROM rota WHERE ID_rota = ? ;', [rota.ID_rota])
             .catch(err => {
                 console.log(err);
                 return false;
