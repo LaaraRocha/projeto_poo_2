@@ -90,6 +90,7 @@ export default {
   margin-right: auto;
   border: solid;
   background: white;
+  border-radius: 5px;
 }
 tr:hover {background-color: #f5f5f5}
 div {
@@ -99,6 +100,18 @@ div {
 }
 button {
   background-color: lightskyblue;
+  font-weight: bold;
+  border-radius: 25px;
 }
 
+button:hover {
+  background-color: white;
+}
+p{
+  font-weight: bold;
+}
+input {
+  border: solid;
+  border-radius: 5px;
+}
 </style>

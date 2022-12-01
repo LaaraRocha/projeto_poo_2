@@ -37,8 +37,19 @@ export default {
 </script>
 
 <style scoped>
-  td {
-    text-align: left;
-    border: 1px solid black
-  }
+td {
+  text-align: left;
+  border: 1px solid black;
+}
+
+div{
+  background-color: white;
+  border: solid;
+  text-decoration: none;
+  font-weight: bold;
+}
+td:hover {
+  background-color: lightskyblue;
+  text-decoration: white;
+}
 </style>

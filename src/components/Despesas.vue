@@ -45,12 +45,6 @@ export default {
 
 <style scoped>
 
-.table{
-  margin-left: auto;
-  margin-right: auto;
-  border: solid;
-  background: white;
-}
 tr:hover {background-color: #f5f5f5}
 div {
   background-color: lightblue;
@@ -59,6 +53,18 @@ div {
 }
 button {
   background-color: lightskyblue;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+button:hover {
+  background-color: white;
+}
+p{
+  font-weight: bold;
+}
+input {
+  border: solid;
 }
 
 </style>

@@ -84,20 +84,33 @@ export default {
 </script>
 
 <style scoped>
- .table{
+.table{
   margin-left: auto;
   margin-right: auto;
-   border: solid;
-   background: white;
+  border: solid;
+  background: white;
+  border-radius: 5px;
 }
- tr:hover {background-color: #f5f5f5}
-  div {
+tr:hover {background-color: #f5f5f5}
+div {
   background-color: lightblue;
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
-  button {
-    background-color: lightskyblue;
-  }
+button {
+  background-color: lightskyblue;
+  font-weight: bold;
+  border-radius: 25px;
+}
 
+button:hover {
+  background-color: white;
+}
+p{
+  font-weight: bold;
+}
+input {
+  border: solid;
+  border-radius: 5px;
+}
 </style>
