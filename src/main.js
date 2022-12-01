@@ -3,13 +3,6 @@ import App from './App.vue'
 import {createRouter, createWebHistory} from "vue-router"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import PrimeVue from 'primevue/config'
-import Dropdown from 'primevue/dropdown'
-import InputText from 'primevue/inputtext';
-
-import 'primevue/resources/themes/lara-light-blue/theme.css'       //theme
-import 'primevue/resources/primevue.min.css'                 //core css
-import 'primeicons/primeicons.css'                           //icons
 
 import MainMenu from "@/components/MainMenu";
 import Motoristas from "@/components/Motoristas";
@@ -36,8 +29,5 @@ let app = createApp(App);
 
 app.use(router);
 app.use(VueAxios, axios);
-app.use(PrimeVue);
-app.component('Drop-down', Dropdown);
-app.component('p-input', InputText);
 
 app.mount('#app')

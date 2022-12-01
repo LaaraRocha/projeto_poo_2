@@ -2,21 +2,20 @@ Despesa:
 
 <template>
   <div>
-    <form action="backend/controller.js">
+    <div>
       <p>Cadastro de Despesa</p>
-      <Drop-down v-model="motoristaSelecionado" :options="listaMotorista" optionLabel="name" placeholder="Select a City" />
-      <input type="integer" name="Código do Motorista" placeholder="Id do motorista">
+      <input name="Código do Motorista" placeholder="Id do motorista" v-model="despesa.ID_motorista"/>
       <br>
-      <input type="integer" name="Código do Veículo" placeholder="Id do veículo">
+      <input type="integer" name="Código do Veículo" placeholder="Id do veículo" v-model="despesa.ID_veiculo">
       <br>
-      <input type="integer" name="Código da Rota" placeholder="Id da rota">
+      <input type="integer" name="Código da Rota" placeholder="Id da rota" v-model="despesa.ID_rota">
       <br>
-      <input type="text" name="Descrição da Despesa" placeholder="Descrição da despesa">
+      <input type="text" name="Descrição da Despesa" placeholder="Descrição da despesa" v-model="despesa.descricao">
       <br>
-      <input type="decimal" name="valor da despesa" placeholder="Valor da despesa">
+      <input type="decimal" name="valor da despesa" placeholder="Valor da despesa" v-model="despesa.valor">
       <br><br>
-      <input type="submit" name="enviar" value="Enviar">
-    </form>
+      <input type="submit" name="enviar" value="Enviar" @click="cadastrar">
+    </div>
   </div>
 </template>
 
@@ -24,47 +23,22 @@ Despesa:
 import axios from "axios";
 
 const urlBackend = 'http://localhost:8081';
-const tipoMotorista = '?tipo=motorista';
-const tipoVeiculo = '?tipo=veiculo';
-const tipoRota = '?tipo=rota';
+const tipo = '?tipo=despesa';
 
 export default {
   name: "tela-despesas",
   data() {
     return {
-      listaMotorista: [],
-      motoristaSelecionado: '',
-      listaVeiculos: [],
-      veiculoSelecionado: '',
-      listaRota: [],
-      rotaSelecionada: ''
+      despesa: {ID_motorista: '', ID_veiculo: '', ID_rota: '', descricao: '', valor: ''}
     }
-  },
-  mounted() {
-    this.atualizarListaMotorista();
-    this.atualizarListaVeiculo();
-    this.atualizarListaRota();
-
   },
   methods: {
-    atualizarListaMotorista() {
-      axios.get(urlBackend + '/obter-lista' + tipoMotorista).then((response) => {
-        this.listaMotoristas = response.data;
-        console.log(this.listaMotoristas)
-      });
+    cadastrar() {
+      console.log(this.despesa)
+      axios.post(urlBackend + '/incluir' + tipo, this.despesa).then((response) => {
+        console.log(response.status)
+      })
     },
-    atualizarListaVeiculo() {
-      axios.get(urlBackend + '/obter-lista' + tipoVeiculo).then((response) => {
-        this.listaVeiculos = response.data;
-        console.log(this.listaMotoristas)
-      });
-    },
-    atualizarListaRota() {
-      axios.get(urlBackend + '/obter-lista' + tipoRota).then((response) => {
-        this.listaRota = response.data;
-        console.log(this.listaMotoristas)
-      });
-    }
   }
 }
 </script>
